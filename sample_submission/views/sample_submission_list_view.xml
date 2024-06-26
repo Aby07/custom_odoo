@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_sample_submission_list_tree" model="ir.ui.view">
+            <field name="name">sample.submission.list.view.tree</field>
+            <field name="model">sample.submission.list.view</field>
+            <field name="arch" type="xml">
+                <tree string="Sample Submission List View" create="false" edit="false">
+                    <field name="sequence_number"/>
+                    <field name="date"/>
+                    <field name="amount"/>
+                    <field name="price"/>
+                    <field name="invoice_status"/>
+                    <field name="collected_payment"/>
+                    <field name="balance"/>
+                    <field name="total"/>
+                    <field name="product_qty"/>
+                    <field name="sum_of_cost"/>
+                    <field name="profit"/>
+                    <field name="sample_sub_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_sample_submission_list_view" model="ir.actions.act_window">
+            <field name="name">Sample Submission List View</field>
+            <field name="res_model">sample.submission.list.view</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_sample_submission_list_tree"/>
+        </record>
+
+        <menuitem id="menu_sample_submission_list_view"
+                  name="Sample Submission List View"
+                  parent="menu_sample_submission_main_root"
+                  action="action_sample_submission_list_view"
+                  sequence="99"/>
+    </data>
+</odoo>

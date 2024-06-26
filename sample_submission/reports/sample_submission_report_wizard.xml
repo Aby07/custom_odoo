@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Sample Submission PDF Report Action -->
+    <record id="action_sample_report_from_wizard" model="ir.actions.report">
+        <field name="name">Simple Submission PDF Report</field>
+        <field name="model">sample.submission</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sample_submission.sample_sub_pdf_report_from_wiz</field>
+        <field name="report_file">sample_submission.sample_sub_pdf_report_from_wiz</field>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- Sample Submission Excel Report Action -->
+    <record id="action_sample_sub_xlsx_reports" model="ir.actions.report">
+        <field name="name">Simple Submission Excel Report</field>
+        <field name="model">sample.submission</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">sample_submission.sample_sub_xlsx_report_from_wiz</field>
+        <field name="report_file">plantation_reports.sample_sub_xlsx_report_from_wiz</field>
+    </record>
+</odoo>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_generate_report_wizard" model="ir.ui.view">
+        <field name="name">sample.sub.generate.wiz.form</field>
+        <field name="model">sample.sub.generate.wiz</field>
+        <field name="arch" type="xml">
+            <form string="Generate Report">
+                <group>
+                    <field name="date"/>
+                    <field name="is_invoiced_or_not"/>
+                    <field name="sample_submission_ids" widget="many2many_tags"/>
+                </group>
+                <footer>
+                    <button name="generate_simple_report_pdf" string="PDF" type="object" class="btn-primary"/>
+                    <button name="generate_simple_report_excel" string="EXCEL" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_report_sample_sub" model="ir.actions.act_window">
+        <field name="name">SAMPLE SUBMISSION REPORT</field>
+        <field name="res_model">sample.sub.generate.wiz</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Report Wizard Menu -->
+    <menuitem id="menu_submission_report"
+              name="Report"
+              parent="sample_submission.menu_sample_submission_main_root"
+              action='action_report_sample_sub'
+    />
+
+</odoo>

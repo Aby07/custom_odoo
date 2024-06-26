@@ -1,0 +1,31 @@
+<odoo>
+    <record id="view_submission_material_wizard_form" model="ir.ui.view">
+        <field name="name">sample.material.wizard.form</field>
+        <field name="model">submission.material.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Add Material">
+                <group>
+                    <field name="sample_sub_id" invisible="1"/>
+                    <field name="material_line_ids">
+                        <tree editable="bottom">
+                            <field name="material_id"/>
+                            <field name="qty"/>
+                            <field name="remarks"/>
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button string="Add Material" type="object" name="action_add_material" class="oe_highlight"/>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_add_material_wizard" model="ir.actions.act_window">
+        <field name="name">Add Material</field>
+        <field name="res_model">submission.material.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

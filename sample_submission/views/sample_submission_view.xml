@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--Tree View-->
+    <record id="view_sample_submission_tree" model="ir.ui.view">
+        <field name="name">sample.submission.tree.view</field>
+        <field name="model">sample.submission</field>
+        <field name="arch" type="xml">
+            <tree string="Sample Submission">
+                <field name="sl_no"/>
+                <field name="date_of_submission"/>
+                <field name="name"/>
+                <field name="customer"/>
+                <field name="price"/>
+                <field name="stage"/>
+                <field name="invoiced"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--Form View-->
+    <record id="view_sample_submission_form" model="ir.ui.view">
+        <field name="name">sample.submission.form.view</field>
+        <field name="model">sample.submission</field>
+        <field name="arch" type="xml">
+            <form string="Sample Submission">
+                <header>
+                    <button string="Doing" type="object" name="action_to_doing" class="oe_highlight"
+                            attrs="{'invisible': [('stage', '!=', 'pending')]}"/>
+                    <button string="Completed" type="object" name="action_completed" class="oe_highlight"
+                            attrs="{'invisible': [('stage', '!=', 'doing')]}"/>
+                    <button string="Generate Invoice" type="object" name="action_generate_invoice" class="oe_highlight"
+                            attrs="{'invisible': ['|', ('invoiced', '=', True), ('stage', '!=', 'completed')]}"/>
+                    <button string="Print PDF" type="object" name="action_generate_pdf_report" class="oe_highlight"
+                            attrs="{'invisible': [('invoiced', '!=', True)]}"/>
+                    <button string="Print Excel" type="object" name="action_generate_xlsx_report" class="oe_highlight"
+                            attrs="{'invisible': [('invoiced', '!=', True)]}"/>
+                    <field name="stage" widget="statusbar" statusbar_visible="pending,doing,completed"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_invoice" type="object" icon="fa-ticket" string="Invoice">
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" title="Invoiced" bg_color="bg-success" attrs="{'invisible': [('invoiced', '!=', True)]}"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="sl_no" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="customer"/>
+                            <field name="date_of_submission"/>
+                            <field name="vat" widget="many2many_tags"/>
+                        </group>
+                        <group>
+                            <field name="price"/>
+                            <field name="discount"/>
+                            <field name="description"/>
+                            <field name="invoiced" invisible="1"/>
+                            <field name="invoice_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Materials Required">
+                            <field name="material_line_ids">
+                                <tree edit="0" delete="1" create="0">
+                                    <field name="sl_no"/>
+                                    <field name="material_id"/>
+                                    <field name="qty"/>
+                                    <field name="remarks"/>
+                                </tree>
+                            </field>
+                            <button name="action_add_product_wizard" type="object" string="Add Material"
+                                    class="oe_highlight"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_sample_submission" model="ir.actions.act_window">
+        <field name="name">Sample Submission</field>
+        <field name="res_model">sample.submission</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click New To Create A New Record.
+            </p>
+        </field>
+    </record>
+
+    <!-- Main Root Menu -->
+    <menuitem id="menu_sample_submission_main_root"
+              name="Sample Submission"
+              sequence="1"
+              groups="group_sample_submission_all"
+    />
+
+    <!-- Main Sub Menu -->
+    <menuitem id="menu_sub_sample_submission"
+              name="Sample Submission"
+              parent="menu_sample_submission_main_root"
+    />
+
+    <!-- Sample Submission Menu -->
+    <menuitem id="menu_sample_submission"
+              name="Sample Submission"
+              parent="menu_sub_sample_submission"
+              action="action_sample_submission"
+    />
+
+</odoo>

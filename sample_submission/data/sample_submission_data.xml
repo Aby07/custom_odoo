@@ -1,0 +1,9 @@
+<odoo>
+    <record id="sample_submission_sequence" model="ir.sequence">
+        <field name="name">Sample Submission</field>
+        <field name="code">sample.submission</field>
+        <field name="prefix">SS</field>
+        <field name="padding">5</field>
+        <field name="number_increment">1</field>
+    </record>
+</odoo>

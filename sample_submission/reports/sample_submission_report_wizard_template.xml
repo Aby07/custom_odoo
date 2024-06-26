@@ -1,0 +1,56 @@
+<odoo>
+    <!-- Sample Submission PDF Report Template -->
+    <template id="sample_sub_pdf_report_from_wiz">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div style="
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        opacity: 0.1;
+                        z-index: -1;
+                        pointer-events: none;">
+                        <img src="/sample_submission/static/description/icon.png"
+                             style="max-width: 100%; max-height: 100%;"/>
+                    </div>
+                    <div class="text-center container" style="border: 1px solid black;">
+                        <h2>SIMPLE SUBMIT REPORT</h2>
+                    </div>
+                    <br/>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th style="width:200px; text-align:left">DATE</th>
+                                <th style="width:200px; text-align:left">CUSTOMER</th>
+                                <th style="width:200px; text-align:left">NAME</th>
+                                <th style="width:200px; text-align:left">PRICE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="docs" t-as="o">
+                                <td>
+                                    <span t-field="o.date_of_submission"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.customer"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.price"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
