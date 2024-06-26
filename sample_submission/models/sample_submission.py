@@ -1,5 +1,5 @@
 from odoo import models, fields, _, api
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, UserError
 
 
 class SampleSubmission(models.Model):
