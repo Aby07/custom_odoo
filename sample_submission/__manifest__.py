@@ -6,7 +6,7 @@
     'sequence': -1,
     'description': """Sample Submission App""",
     'category': 'Sample Submission Demo',
-    'depends': ['base', 'stock'],
+    'depends': ['base', 'stock', 'report_xlsx'],
     'data': [
         'data/sample_submission_data.xml',
         'security/ir.model.access.csv',
